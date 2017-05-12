@@ -110,6 +110,38 @@ if test x$sphinxbase = x; then
    done
 fi
 
+dnl
+dnl Check for system SphinxBase if none was passed to us
+dnl Also allow --with-sphinxbase=auto to use system one explicitly
+dnl
+if test x$sphinxbase = x || test x$sphinxbase = xauto; then
+   sphinxbase=
+
+   if test "x$HAVE_PKGCONFIG" = "xno"; then
+      SPHINXBASE_CFLAGS = "-I/usr/include/sphinxbase -I/usr/local/include/sphinxbase"
+      SPHINXBASE_LIBS = "-lsphinxbase"
+      SPHINXBASE_PREFIX="/usr/local"
+   else
+      PKG_CHECK_MODULES(SPHINXBASE, [sphinxbase],,[
+      AC_MSG_FAILURE(dnl
+[SphinxBase was not found on your system.
+Make sure that you have installed it and that the
+PKG_CONFIG_PATH environment variable is set correctly, if
+it was installed in a non-standard prefix.])])
+      SPHINXBASE_PREFIX=`pkg-config --variable=prefix sphinxbase`
+   fi
+   
+   LIBS="$LIBS $SPHINXBASE_LIBS"
+   CPPFLAGS="$CPPFLAGS $SPHINXBASE_CFLAGS"
+   SPHINXBASE_SWIG="$SPHINXBASE_PREFIX/share/sphinxbase/swig"
+   AC_CHECK_HEADER(sphinx_config.h,,[AC_MSG_FAILURE([SphinxBase was not found on your system.])])
+else
+   LIBS="$LIBS -lsphinxbase"
+   LDFLAGS="$LDFLAGS -L$sphinxbase/lib -L$sphinxbase/src/libsphinxad -L$sphinxbase/src/libsphinxbase"
+   CPPFLAGS="$CPPFLAGS -I$sphinxbase/include -I$sphinxbase/include/sphinxbase"
+   SPHINXBASE_SWIG="$sphinxbase/swig"
+fi
+
 AC_SUBST(SPHINXBASE_SWIG)
 
 AC_OUTPUT([
