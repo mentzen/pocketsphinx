@@ -1,7 +1,7 @@
 dnl Welcome to the Sphinx automated build system.
 dnl try not to hurt yourself ;)
 
-AC_INIT(pocketsphinx, 5prealpha)
+AC_INIT(Pocketsphinx-CocoaPod, 5prealpha)
 AC_CONFIG_HEADERS([include/config.h])
 AM_INIT_AUTOMAKE([no-define foreign])
 AC_CONFIG_MACRO_DIR([m4])
@@ -145,7 +145,7 @@ fi
 AC_SUBST(SPHINXBASE_SWIG)
 
 AC_OUTPUT([
-pocketsphinx.pc
+pocketsphinx-CocoaPod.pc
 Makefile
 include/Makefile
 src/Makefile
