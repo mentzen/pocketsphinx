@@ -12,4 +12,4 @@ URL: http://cmusphinx.sourceforge.net/
 Requires: sphinxbase >= @VERSION@
 Libs: -L${libdir} -lpocketsphinx
 Libs.private: ${libs} -lm
-Cflags: -I${includedir} -I${includedir}/sphinxbase -I${includedir}/pocketsphinx
+Cflags: -I${includedir} -I${includedir}/sphinxbase-CocoaPod -I${includedir}/pocketsphinx-CocoaPod
