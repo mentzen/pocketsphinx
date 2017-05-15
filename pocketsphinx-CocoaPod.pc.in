@@ -4,10 +4,9 @@ libdir=@libdir@
 includedir=@includedir@
 libs=@LIBS@
 datadir=@datarootdir@/@PACKAGE@
-modeldir=@datarootdir@/@PACKAGE@/model
 
-Name: PocketSphinx
-Description: Lightweight speech recognition system
+Name: PocketSphinx-CocoaPod
+Description: Lightweight speech recognition system. This is the CocoaPod Version
 Version: @VERSION@
 URL: http://cmusphinx.sourceforge.net/
 Requires: sphinxbase >= @VERSION@

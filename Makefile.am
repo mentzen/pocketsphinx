@@ -1,4 +1,4 @@
-SUBDIRS = src doc model include test swig
+#SUBDIRS = src doc include test swig
 
 EXTRA_DIST = \
 	LICENSE \
